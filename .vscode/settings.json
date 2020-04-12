@@ -1,3 +1,6 @@
 {
-    "flow.pathToFlow": "${workspaceFolder}/node_modules/.bin/flow"
+    "flow.pathToFlow": "${workspaceFolder}/node_modules/.bin/flow",
+    "files.associations": {
+        "*.js": "javascriptreact"
+    }
 }
