@@ -7,17 +7,21 @@
  * @flow strict-local
  */
 import React from 'react';
-import { Dimensions, StatusBar, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import DocumentPicker from 'react-native-document-picker';
 import Pdf from 'react-native-pdf';
-
 
 const App: () => React$Node = () => {
   const [source, setSource] = React.useState(null);
-  const tSource = { uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf', cache: true };
 
   const open = React.useCallback(() => {
-    setSource(tSource);
-  }, [setSource, tSource]);
+    const filePicker = async () => {
+      const file = await DocumentPicker.pick({ type: ['application/pdf', 'kUTTypePDF', 'com.adobe.pdf', '.pdf'] });
+      setSource({ uri: file.uri });
+    };
+
+    filePicker();
+  }, []);
 
   const close = React.useCallback(() => {
     setSource(null);
